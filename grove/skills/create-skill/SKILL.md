@@ -56,6 +56,8 @@ How to know the skill was applied correctly.
 
 Agents are specialized personas invoked via `Task agent-name(arguments)`. Create `agents/<category>/<name>.md`.
 
+For detailed agent design guidance, load the `agent-creator` skill.
+
 ### Categories
 
 - `research/` - Information gathering and analysis
