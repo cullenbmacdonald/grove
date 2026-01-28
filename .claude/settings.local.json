@@ -12,7 +12,13 @@
       "Bash(git -C /Users/cullen/.claude/plugins/marketplaces/every-marketplace/plugins/compound-engineering log --oneline -5)",
       "Bash(git -C /Users/cullen/.claude/plugins/marketplaces/every-marketplace/plugins/compound-engineering add:*)",
       "Bash(git -C /Users/cullen/.claude/plugins/marketplaces/every-marketplace/plugins/compound-engineering commit -m \"$\\(cat <<''EOF''\nRefactor generate_command to invoke create-commands skill\n\nExtract command creation guidance into a dedicated skill, following\nthe pattern where commands are thin entry points that invoke skills.\nThis allows Claude to discover and use the skill automatically.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "WebSearch"
+      "WebSearch",
+      "Bash(tree:*)",
+      "WebFetch(domain:www.anthropic.com)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ]
   }
 }
