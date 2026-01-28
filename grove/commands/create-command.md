@@ -1,5 +1,5 @@
 ---
-name: generate_command
+name: create-command
 description: Create a new custom slash command following conventions and best practices
 argument-hint: "[command purpose and requirements]"
 ---
@@ -12,151 +12,55 @@ Create a new slash command in `.claude/commands/` for the requested task.
 
 #$ARGUMENTS
 
-## Key Capabilities to Leverage
+## Instructions
 
-**File Operations:**
-- Read, Edit, Write - modify files precisely
-- Glob, Grep - search codebase
-- MultiEdit - atomic multi-part changes
+Load the `command-creator` skill for detailed guidance on command structure, patterns, and best practices.
 
-**Development:**
-- Bash - run commands (git, tests, linters)
-- Task - launch specialized agents for complex tasks
-- TodoWrite - track progress with todo lists
+## Quick Reference
 
-**Web & APIs:**
-- WebFetch, WebSearch - research documentation
-- GitHub (gh cli) - PRs, issues, reviews
-- Playwright - browser automation, screenshots
-
-**Integrations:**
-- AppSignal - logs and monitoring
-- Context7 - framework docs
-- Stripe, Todoist, Featurebase (if relevant)
-
-## Best Practices
-
-1. **Be specific and clear** - detailed instructions yield better results
-2. **Break down complex tasks** - use step-by-step plans
-3. **Use examples** - reference existing code patterns
-4. **Include success criteria** - tests pass, linting clean, etc.
-5. **Think first** - use "think hard" or "plan" keywords for complex problems
-6. **Iterate** - guide the process step by step
-
-## Required: YAML Frontmatter
-
-**EVERY command MUST start with YAML frontmatter:**
+### Required YAML Frontmatter
 
 ```yaml
 ---
 name: command-name
-description: Brief description of what this command does (max 100 chars)
-argument-hint: "[what arguments the command accepts]"
+description: Brief description (max 100 chars)
+argument-hint: "[expected arguments]"
 ---
 ```
 
-**Fields:**
-- `name`: Lowercase command identifier (used internally)
-- `description`: Clear, concise summary of command purpose
-- `argument-hint`: Shows user what arguments are expected (e.g., `[file path]`, `[PR number]`, `[optional: format]`)
-
-## Structure Your Command
+### Command Structure
 
 ```markdown
-# [Command Name]
+# Command Title
 
-[Brief description of what this command does]
+## Input
+
+<input> #$ARGUMENTS </input>
 
 ## Steps
 
 1. [First step with specific details]
-   - Include file paths, patterns, or constraints
-   - Reference existing code if applicable
-
 2. [Second step]
-   - Use parallel tool calls when possible
-   - Check/verify results
-
-3. [Final steps]
-   - Run tests
-   - Lint code
-   - Commit changes (if appropriate)
-
-## Success Criteria
-
-- [ ] Tests pass
-- [ ] Code follows style guide
-- [ ] Documentation updated (if needed)
-```
-
-## Tips for Effective Commands
-
-- **Use $ARGUMENTS** placeholder for dynamic inputs
-- **Reference CLAUDE.md** patterns and conventions
-- **Include verification steps** - tests, linting, visual checks
-- **Be explicit about constraints** - don't modify X, use pattern Y
-- **Use XML tags** for structured prompts: `<task>`, `<requirements>`, `<constraints>`
-
-## Example Pattern
-
-```markdown
-Implement #$ARGUMENTS following these steps:
-
-1. Research existing patterns
-   - Search for similar code using Grep
-   - Read relevant files to understand approach
-
-2. Plan the implementation
-   - Think through edge cases and requirements
-   - Consider test cases needed
-
-3. Implement
-   - Follow existing code patterns (reference specific files)
-   - Write tests first if doing TDD
-   - Ensure code follows CLAUDE.md conventions
-
-4. Verify
-   - Run tests: `bin/rails test`
-   - Run linter: `bundle exec standardrb`
-   - Check changes with git diff
-
-5. Commit (optional)
-   - Stage changes
-   - Write clear commit message
-```
-
-## Creating the Command File
-
-1. **Create the file** at `.claude/commands/[name].md` (subdirectories like `workflows/` supported)
-2. **Start with YAML frontmatter** (see section above)
-3. **Structure the command** using the template above
-4. **Test the command** by using it with appropriate arguments
-
-## Command File Template
-
-```markdown
----
-name: command-name
-description: What this command does
-argument-hint: "[expected arguments]"
----
-
-# Command Title
-
-Brief introduction of what the command does and when to use it.
-
-## Workflow
-
-### Step 1: [First Major Step]
-
-Details about what to do.
-
-### Step 2: [Second Major Step]
-
-Details about what to do.
+3. [Verification step]
 
 ## Success Criteria
 
 - [ ] Expected outcome 1
 - [ ] Expected outcome 2
 ```
+
+### Key Principles
+
+1. **Set appropriate freedom** - Match specificity to task fragility
+2. **Use `$ARGUMENTS`** - Reference user input with `$ARGUMENTS`, `$0`, `$1`, etc.
+3. **Include verification** - Tests, linting, git diff
+4. **Be explicit** - Clear constraints and tool references
+
+### Creating the File
+
+1. Create at `.claude/commands/[name].md`
+2. Start with YAML frontmatter
+3. Define clear steps with verification
+4. Test with real arguments
+
+For detailed patterns and examples, see the `command-creator` skill.

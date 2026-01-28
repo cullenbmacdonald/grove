@@ -1,5 +1,5 @@
 ---
-name: skill-creator
+name: create-skill
 description: This skill should be used when creating new skills, agents, or commands for the grove plugin. It provides templates and guidance for each component type. Triggers on "create skill", "new agent", "add command", "extend grove".
 ---
 
