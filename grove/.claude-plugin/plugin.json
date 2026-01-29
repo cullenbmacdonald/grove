@@ -1,5 +1,5 @@
 {
   "name": "grove",
-  "version": "0.5.1",
-  "description": "A minimal, incrementally-grown Claude Code plugin"
+  "version": "0.6.0",
+  "description": "Scaffolding for creating Claude Code skills, commands, and agents. Components work natively without the plugin."
 }

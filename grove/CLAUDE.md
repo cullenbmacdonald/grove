@@ -1,18 +1,28 @@
 # Grove Plugin
 
-A minimal Claude Code plugin that grows organically. Add capabilities only when you need them.
+Scaffolding for creating Claude Code skills, commands, and agents. Grove helps you build components that work natively with Claude Code - once created, they don't need this plugin.
 
 ## Philosophy
 
-- Start minimal, add when you feel the pain
-- Language-agnostic by default
-- Document solutions as you go
+- **Scaffolding, not a cage** - Components you create are standard Claude Code formats. Uninstall grove anytime and everything keeps working.
+- **Teach patterns, not dependencies** - Grove's skills teach Anthropic's best practices for agents and commands. The knowledge transfers.
+- **Start minimal, add when you feel the pain** - Create components as you need them, not upfront.
 
-## Adding Components
+## What Grove Creates
+
+Everything grove creates uses standard Claude Code conventions:
+
+| Component | Location | Works without grove? |
+|-----------|----------|---------------------|
+| Commands | `.claude/commands/<name>.md` | ✓ Yes |
+| Agents | `.claude/agents/<category>/<name>.md` | ✓ Yes |
+| Skills | `.claude/skills/<name>/SKILL.md` | ✓ Yes |
+
+## Component Formats
 
 ### Skills
 
-Create `skills/<skill-name>/SKILL.md`:
+Create `.claude/skills/<skill-name>/SKILL.md`:
 
 ```markdown
 ---
@@ -38,7 +48,7 @@ Instructions for using the skill.
 
 ### Agents
 
-Create `agents/<category>/<agent-name>.md`:
+Create `.claude/agents/<category>/<agent-name>.md`:
 
 ```markdown
 ---
@@ -58,7 +68,7 @@ Your approach:
 
 ### Commands
 
-Create `commands/<command-name>.md`:
+Create `.claude/commands/<command-name>.md`:
 
 ```markdown
 ---
