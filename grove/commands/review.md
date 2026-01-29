@@ -1,5 +1,5 @@
 ---
-name: review
+name: grove:review
 description: Run code review agents in parallel following Anthropic's patterns
 argument-hint: "[files or directories to review]"
 ---

@@ -1,5 +1,5 @@
 ---
-name: create-agent
+name: grove:create-agent
 description: Create a new specialized agent following Anthropic's best practices
 argument-hint: "[agent purpose and requirements]"
 ---

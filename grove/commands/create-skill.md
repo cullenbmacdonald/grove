@@ -1,5 +1,5 @@
 ---
-name: create-skill
+name: grove:create-skill
 description: Create new skills, agents, or commands for the grove plugin
 argument-hint: "[skill|agent|command] [name]"
 ---
