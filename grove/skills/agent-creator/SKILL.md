@@ -15,7 +15,7 @@ Start with the simplest solution that works. Only add complexity when simpler ap
 
 ## Quick Start
 
-Agents are markdown files in `agents/<category>/` that define specialized personas invoked via `Task agent-name(arguments)`.
+Agents are markdown files in `.claude/agents/<category>/` that define specialized personas invoked via `Task agent-name(arguments)`.
 
 **Minimal template:**
 
@@ -66,9 +66,9 @@ Place agents in the appropriate subdirectory:
 
 | Category | Path | Purpose | Examples |
 |----------|------|---------|----------|
-| Research | `agents/research/` | Information gathering and analysis | Codebase explorer, API researcher, dependency auditor |
-| Review | `agents/review/` | Code review and quality checks | Code reviewer, security auditor, accessibility checker |
-| Workflow | `agents/workflow/` | Process automation | Release manager, migration assistant, test generator |
+| Research | `.claude/agents/research/` | Information gathering and analysis | Codebase explorer, API researcher, dependency auditor |
+| Review | `.claude/agents/review/` | Code review and quality checks | Code reviewer, security auditor, accessibility checker |
+| Workflow | `.claude/agents/workflow/` | Process automation | Release manager, migration assistant, test generator |
 
 Choose the category that best matches the agent's primary function. If unclear, prefer `workflow/`.
 
@@ -321,7 +321,7 @@ Start with no permissions and add only what's needed. An agent that only needs t
 ## Creating the Agent
 
 1. Choose the appropriate category (`research/`, `review/`, `workflow/`)
-2. Create file at `agents/<category>/<name>.md`
+2. Create file at `.claude/agents/<category>/<name>.md`
 3. Write YAML frontmatter with `<example>` tags
 4. Define a clear, focused role in the opening line
 5. Structure the approach using the simplest suitable pattern

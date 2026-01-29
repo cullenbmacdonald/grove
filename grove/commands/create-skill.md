@@ -17,8 +17,8 @@ Create a new component for the grove plugin.
 **First, ask the user where to create the component:**
 
 - **Project** - Available only in this project
-  - Skills: `skills/<name>/SKILL.md`
-  - Agents: `agents/<category>/<name>.md`
+  - Skills: `.claude/skills/<name>/SKILL.md`
+  - Agents: `.claude/agents/<category>/<name>.md`
   - Commands: `.claude/commands/<name>.md`
 - **Global** - Available in all projects
   - Skills: `~/.claude/skills/<name>/SKILL.md`

@@ -20,7 +20,7 @@ Load the `review` skill for detailed guidance on running parallel review agents 
 
 ### How It Works
 
-This command orchestrates review agents from `agents/review/` using Anthropic's **parallelization pattern**:
+This command orchestrates review agents from `.claude/agents/review/` using Anthropic's **parallelization pattern**:
 
 ```
 Input → [Agent A] ─┐
@@ -32,22 +32,22 @@ Each review agent examines code from a focused perspective and runs in parallel 
 
 ### Running Reviews
 
-1. Check for available review agents in `agents/review/`
+1. Check for available review agents in `.claude/agents/review/`
 2. If agents exist, launch them in parallel using the Task tool
 3. Collect and synthesize findings from all agents
 4. Present unified results with prioritized recommendations
 
 ### If No Agents Exist
 
-If the `agents/review/` directory is empty or doesn't exist, inform the user:
+If the `.claude/agents/review/` directory is empty or doesn't exist, inform the user:
 
 ```
-No review agents found in agents/review/.
+No review agents found in .claude/agents/review/.
 
 To create review agents, use:
   /create-agent [agent purpose, e.g., "security reviewer focused on OWASP Top 10"]
 
-Review agents should be placed in agents/review/ and follow the agent template.
+Review agents should be placed in .claude/agents/review/ and follow the agent template.
 See the agent-creator skill for guidance.
 ```
 

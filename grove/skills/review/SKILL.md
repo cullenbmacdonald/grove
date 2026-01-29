@@ -1,6 +1,6 @@
 ---
 name: review
-description: This skill provides guidance for running parallel code review agents following Anthropic's parallelization pattern. It orchestrates agents from agents/review/ to analyze code from multiple perspectives simultaneously. Triggers on "code review", "review code", "run review", "parallel review".
+description: This skill provides guidance for running parallel code review agents following Anthropic's parallelization pattern. It orchestrates agents from .claude/agents/review/ to analyze code from multiple perspectives simultaneously. Triggers on "code review", "review code", "run review", "parallel review".
 ---
 
 # Review
@@ -23,7 +23,7 @@ From Anthropic's research:
 
 ## Review Agents Location
 
-Review agents live in `agents/review/`. Each agent is a markdown file that defines a focused review perspective.
+Review agents live in `.claude/agents/review/`. Each agent is a markdown file that defines a focused review perspective.
 
 ## Running a Review
 
@@ -32,15 +32,15 @@ Review agents live in `agents/review/`. Each agent is a markdown file that defin
 First, check if any review agents exist:
 
 ```
-Glob: agents/review/*.md
+Glob: .claude/agents/review/*.md
 ```
 
 ### Step 2: Handle No Agents Case
 
-If no agents are found in `agents/review/`, inform the user clearly:
+If no agents are found in `.claude/agents/review/`, inform the user clearly:
 
 ```markdown
-No review agents found in `agents/review/`.
+No review agents found in `.claude/agents/review/`.
 
 Create review agents that match your team's needs:
   /create-agent <focus> reviewer for <what it checks>
@@ -51,7 +51,7 @@ Examples:
   /create-agent API design reviewer for RESTful conventions
   /create-agent test coverage reviewer for missing unit tests
 
-Review agents should be placed in `agents/review/` and follow the standard agent template.
+Review agents should be placed in `.claude/agents/review/` and follow the standard agent template.
 See the `agent-creator` skill for detailed guidance.
 ```
 
@@ -70,7 +70,7 @@ Based on input:
 Use the Task tool to launch all discovered review agents simultaneously. This follows Anthropic's parallelization pattern for speed and multi-perspective analysis.
 
 ```markdown
-For each agent discovered in agents/review/*.md, launch using the Task tool:
+For each agent discovered in .claude/agents/review/*.md, launch using the Task tool:
 
 Task <agent-name>("<agent-description>: [file list]")
 ```
@@ -213,7 +213,7 @@ Create the agents that matter for your codebase. A frontend project might want a
 
 Before presenting the final review:
 
-- [ ] Discovered all agents in `agents/review/` via Glob
+- [ ] Discovered all agents in `.claude/agents/review/` via Glob
 - [ ] Launched all discovered agents in parallel (single message, multiple Task calls)
 - [ ] Each agent's findings are included in the summary
 - [ ] Findings are deduplicated across agents
@@ -225,7 +225,7 @@ Before presenting the final review:
 
 A successful review:
 
-- [ ] Checked for agents in `agents/review/`
+- [ ] Checked for agents in `.claude/agents/review/`
 - [ ] If no agents: Clearly informed user and provided guidance
 - [ ] If agents exist: Launched all agents in parallel
 - [ ] Synthesized findings into a unified report

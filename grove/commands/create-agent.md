@@ -16,7 +16,7 @@ Create a new agent for the requested purpose.
 
 **First, ask the user where to create the agent:**
 
-- **Project** (`agents/<category>/`) - Available only in this project
+- **Project** (`.claude/agents/<category>/`) - Available only in this project
 - **Global** (`~/.claude/agents/<category>/`) - Available in all projects
 
 Use the AskUserQuestion tool to prompt for this choice before proceeding.
@@ -70,7 +70,7 @@ When working, provide:
 ### Creating the File
 
 1. Create at the chosen location:
-   - **Project**: `agents/<category>/<name>.md`
+   - **Project**: `.claude/agents/<category>/<name>.md`
    - **Global**: `~/.claude/agents/<category>/<name>.md`
 2. Start with YAML frontmatter including `<example>` tags
 3. Define a clear role and structured approach
