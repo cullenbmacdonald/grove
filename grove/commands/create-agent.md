@@ -6,7 +6,7 @@ argument-hint: "[agent purpose and requirements]"
 
 # Create a Specialized Agent
 
-Create a new agent in `agents/<category>/` for the requested purpose.
+Create a new agent for the requested purpose.
 
 ## Goal
 
@@ -14,7 +14,14 @@ Create a new agent in `agents/<category>/` for the requested purpose.
 
 ## Instructions
 
-Load the `agent-creator` skill for detailed guidance on agent design, patterns, and best practices drawn from Anthropic's research.
+**First, ask the user where to create the agent:**
+
+- **Project** (`agents/<category>/`) - Available only in this project
+- **Global** (`~/.claude/agents/<category>/`) - Available in all projects
+
+Use the AskUserQuestion tool to prompt for this choice before proceeding.
+
+Then load the `agent-creator` skill for detailed guidance on agent design, patterns, and best practices drawn from Anthropic's research.
 
 ## Quick Reference
 
@@ -62,7 +69,9 @@ When working, provide:
 
 ### Creating the File
 
-1. Create at `agents/<category>/<name>.md`
+1. Create at the chosen location:
+   - **Project**: `agents/<category>/<name>.md`
+   - **Global**: `~/.claude/agents/<category>/<name>.md`
 2. Start with YAML frontmatter including `<example>` tags
 3. Define a clear role and structured approach
 4. Use `model: inherit` (or `haiku` for simple tasks)

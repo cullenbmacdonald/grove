@@ -6,7 +6,7 @@ argument-hint: "[command purpose and requirements]"
 
 # Create a Custom Claude Code Command
 
-Create a new slash command in `.claude/commands/` for the requested task.
+Create a new slash command for the requested task.
 
 ## Goal
 
@@ -14,7 +14,14 @@ Create a new slash command in `.claude/commands/` for the requested task.
 
 ## Instructions
 
-Load the `command-creator` skill for detailed guidance on command structure, patterns, and best practices.
+**First, ask the user where to create the command:**
+
+- **Project** (`.claude/commands/`) - Available only in this project
+- **Global** (`~/.claude/commands/`) - Available in all projects
+
+Use the AskUserQuestion tool to prompt for this choice before proceeding.
+
+Then load the `command-creator` skill for detailed guidance on command structure, patterns, and best practices.
 
 ## Quick Reference
 
@@ -58,7 +65,9 @@ argument-hint: "[expected arguments]"
 
 ### Creating the File
 
-1. Create at `.claude/commands/[name].md`
+1. Create at the chosen location:
+   - **Project**: `.claude/commands/[name].md`
+   - **Global**: `~/.claude/commands/[name].md`
 2. Start with YAML frontmatter
 3. Define clear steps with verification
 4. Test with real arguments

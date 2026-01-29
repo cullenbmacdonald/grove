@@ -14,11 +14,22 @@ Create a new component for the grove plugin.
 
 ## Instructions
 
-Load the create-skill skill and follow its guidance to create the requested component.
+**First, ask the user where to create the component:**
 
-If no arguments provided, ask the user what they want to create:
+- **Project** - Available only in this project
+  - Skills: `skills/<name>/SKILL.md`
+  - Agents: `agents/<category>/<name>.md`
+  - Commands: `.claude/commands/<name>.md`
+- **Global** - Available in all projects
+  - Skills: `~/.claude/skills/<name>/SKILL.md`
+  - Agents: `~/.claude/agents/<category>/<name>.md`
+  - Commands: `~/.claude/commands/<name>.md`
+
+Use the AskUserQuestion tool to prompt for this choice before proceeding.
+
+If no arguments provided, also ask the user what they want to create:
 - **skill** - Domain knowledge loaded on-demand
 - **agent** - Specialized persona for specific tasks
 - **command** - Slash-invoked workflow
 
-Guide them through the creation process using the templates in the create-skill skill.
+Then load the create-skill skill and follow its guidance to create the requested component.
