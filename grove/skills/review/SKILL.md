@@ -42,13 +42,17 @@ If no agents are found in `agents/review/`, inform the user clearly:
 ```markdown
 No review agents found in `agents/review/`.
 
-To create review agents, use:
+Create review agents that match your team's needs:
+  /create-agent <focus> reviewer for <what it checks>
+
+Examples:
   /create-agent security reviewer focused on OWASP Top 10 vulnerabilities
-  /create-agent performance reviewer for identifying bottlenecks
-  /create-agent accessibility checker for WCAG compliance
+  /create-agent accessibility reviewer for WCAG compliance
+  /create-agent API design reviewer for RESTful conventions
+  /create-agent test coverage reviewer for missing unit tests
 
 Review agents should be placed in `agents/review/` and follow the standard agent template.
-See the `agent-creator` skill for detailed guidance on creating effective agents.
+See the `agent-creator` skill for detailed guidance.
 ```
 
 Do NOT proceed with review if no agents exist. The user must create agents first.
@@ -63,21 +67,27 @@ Based on input:
 
 ### Step 4: Launch Agents in Parallel
 
-Use the Task tool to launch all review agents simultaneously. This follows Anthropic's parallelization pattern for speed and multi-perspective analysis.
+Use the Task tool to launch all discovered review agents simultaneously. This follows Anthropic's parallelization pattern for speed and multi-perspective analysis.
 
 ```markdown
-Launch all agents in a single message with multiple Task tool calls:
+For each agent discovered in agents/review/*.md, launch using the Task tool:
 
-Task security-reviewer("Review these files for security issues: [file list]")
-Task performance-reviewer("Review these files for performance issues: [file list]")
-Task style-reviewer("Review these files for style and maintainability: [file list]")
+Task <agent-name>("<agent-description>: [file list]")
 ```
 
-**Key principle:** All Task calls should be in a single message to enable true parallel execution.
+**Example** - If you discovered `api-reviewer.md`, `test-coverage.md`, and `accessibility.md`:
+
+```markdown
+Task api-reviewer("Review API design: [file list]")
+Task test-coverage("Check test coverage: [file list]")
+Task accessibility("Review for WCAG compliance: [file list]")
+```
+
+**Key principle:** All Task calls must be in a single message to enable true parallel execution. The agent names come from what you discovered in Step 1, not a predetermined list.
 
 ### Step 5: Synthesize Results
 
-After all agents complete, combine their findings into a unified report:
+After all agents complete, combine their findings into a unified report. The categories come from whichever agents you launched:
 
 ```markdown
 ## Code Review Summary
@@ -87,14 +97,13 @@ After all agents complete, combine their findings into a unified report:
 
 ### Findings by Category
 
-#### Security
-[Findings from security reviewer, or "No issues found"]
+#### [Agent 1 Name]
+[Findings from first agent, or "No issues found"]
 
-#### Performance
-[Findings from performance reviewer, or "No issues found"]
+#### [Agent 2 Name]
+[Findings from second agent, or "No issues found"]
 
-#### [Other Categories...]
-[Findings from other reviewers]
+[Continue for each agent that was launched...]
 
 ### Prioritized Recommendations
 
@@ -105,6 +114,8 @@ After all agents complete, combine their findings into a unified report:
 ### Files Reviewed
 - [List of files that were reviewed]
 ```
+
+The report structure adapts to whatever agents exist. If only one agent exists, the report has one category. If five exist, it has five.
 
 ## Agent Design for Reviews
 
@@ -138,77 +149,72 @@ For each finding:
 
 ### Focused Scope
 
-Each agent should have a **single, focused concern**:
+Each agent should have a **single, focused concern**. Examples of focused review perspectives:
 
-- Security agent focuses on vulnerabilities, not style
-- Performance agent focuses on bottlenecks, not security
-- Style agent focuses on maintainability, not performance
+- Security: vulnerabilities, auth issues, injection flaws
+- Performance: bottlenecks, memory usage, algorithm efficiency
+- Accessibility: WCAG compliance, screen reader support
+- API design: consistency, RESTful conventions, error handling
+- Test coverage: missing tests, edge cases, test quality
+- i18n/l10n: hardcoded strings, locale handling
+- Documentation: missing docs, outdated comments
 
-This separation enables true parallel processing and prevents duplicate findings.
+This separation enables true parallel processing and prevents duplicate findings. Teams should create agents that match their specific needs and standards.
 
 ## Example Review Agents
 
-These are examples of what agents in `agents/review/` might look like. They do NOT exist by default.
+These are **templates** showing the pattern. They do NOT exist by default. Create agents that match your team's actual review needs using `/create-agent`.
 
-### Security Reviewer
+### Template: Focused Reviewer Pattern
 
 ```markdown
 ---
-name: security-reviewer
-description: "Use this agent for security-focused code review.\n\n<example>\nContext: Reviewing a PR with authentication changes\nuser: \"/review src/auth/\"\nassistant: \"I'll use security-reviewer to check for vulnerabilities\"\n<commentary>\nAuth code requires security-focused review for vulnerabilities.\n</commentary>\n</example>"
+name: <focus-area>-reviewer
+description: "Use this agent for <focus-area>-focused code review.\n\n<example>\nContext: <when this perspective is valuable>\nuser: \"/review src/...\"\nassistant: \"I'll use <focus-area>-reviewer to <what it checks>\"\n</example>"
 model: inherit
 ---
 
-You are a security-focused code reviewer specializing in OWASP Top 10 vulnerabilities.
+You are a <focus-area>-focused code reviewer.
 
 Your approach:
 
-1. **Scan for vulnerabilities**
-   - Injection flaws (SQL, command, XSS)
-   - Authentication/authorization issues
-   - Sensitive data exposure
-   - Security misconfigurations
+1. **Identify issues related to <focus-area>**
+   - [Specific thing to check]
+   - [Another thing to check]
+   - [Third thing to check]
 
 2. **Assess severity**
-   - Critical: Exploitable with high impact
-   - Warning: Potential vulnerability
-   - Info: Security best practice suggestion
+   - Critical: [What makes something critical]
+   - Warning: [What makes something a warning]
+   - Info: [What's just a suggestion]
 
 3. **Report findings** with file:line references and remediation steps
 ```
 
-### Performance Reviewer
+### Example Instantiations
 
-```markdown
----
-name: performance-reviewer
-description: "Use this agent for performance-focused code review.\n\n<example>\nContext: Reviewing data processing code\nuser: \"/review src/data/\"\nassistant: \"I'll use performance-reviewer to identify bottlenecks\"\n<commentary>\nData processing code benefits from performance analysis.\n</commentary>\n</example>"
-model: inherit
----
+Here are diverse examples showing how to apply the template:
 
-You are a performance-focused code reviewer.
+**Accessibility Reviewer** - WCAG compliance, screen reader support, keyboard navigation, color contrast
 
-Your approach:
+**API Design Reviewer** - RESTful conventions, error response consistency, versioning, documentation coverage
 
-1. **Identify bottlenecks**
-   - O(n²) or worse algorithms
-   - Unnecessary iterations
-   - Missing caching opportunities
-   - Blocking operations
+**Test Coverage Reviewer** - Missing unit tests, edge cases, test isolation, mock usage
 
-2. **Check resource usage**
-   - Memory allocation patterns
-   - Database query efficiency
-   - Network call optimization
+**Security Reviewer** - OWASP Top 10, injection flaws, auth issues, sensitive data exposure
 
-3. **Report findings** with specific optimization suggestions
-```
+**Database Reviewer** - N+1 queries, missing indexes, transaction handling, migration safety
+
+**i18n Reviewer** - Hardcoded strings, locale handling, RTL support, date/number formatting
+
+Create the agents that matter for your codebase. A frontend project might want accessibility and performance agents. A backend API might want security and database agents.
 
 ## Verification
 
 Before presenting the final review:
 
-- [ ] All available review agents were launched in parallel
+- [ ] Discovered all agents in `agents/review/` via Glob
+- [ ] Launched all discovered agents in parallel (single message, multiple Task calls)
 - [ ] Each agent's findings are included in the summary
 - [ ] Findings are deduplicated across agents
 - [ ] Severity levels are applied consistently

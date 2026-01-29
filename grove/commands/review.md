@@ -28,7 +28,7 @@ Input → [Agent A] ─┐
       → [Agent C] ─┘
 ```
 
-Each review agent examines code from a different perspective (security, performance, maintainability, etc.) and runs in parallel for speed.
+Each review agent examines code from a focused perspective and runs in parallel for speed.
 
 ### Running Reviews
 
