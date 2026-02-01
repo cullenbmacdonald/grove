@@ -1,3 +1,5 @@
+HI
+
 # Grove Plugin
 
 Scaffolding for creating Claude Code skills, commands, and agents. Grove helps you build components that work natively with Claude Code - once created, they don't need this plugin.
