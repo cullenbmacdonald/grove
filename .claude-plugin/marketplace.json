@@ -1,0 +1,25 @@
+{
+  "name": "grove",
+  "owner": {
+    "name": "Cullen MacDonald",
+    "url": "https://github.com/cullenbmacdonald"
+  },
+  "metadata": {
+    "description": "Scaffolding for creating Claude Code skills, commands, and agents. Components work natively without the plugin.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "grove",
+      "description": "Scaffolding for creating Claude Code skills, commands, and agents. Components work natively without the plugin.",
+      "version": "0.7.0",
+      "author": {
+        "name": "Cullen MacDonald",
+        "url": "https://github.com/cullenbmacdonald"
+      },
+      "homepage": "https://github.com/cullenbmacdonald/grove",
+      "tags": ["scaffolding", "skills", "commands", "agents", "developer-tools"],
+      "source": "./grove"
+    }
+  ]
+}
