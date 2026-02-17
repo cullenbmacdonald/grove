@@ -7,7 +7,7 @@ Personal Claude Code plugin marketplace. Contains the **grove** plugin for scaff
 Add this repo as a plugin marketplace in Claude Code:
 
 ```bash
-claude plugin marketplace add ~/dev/claude_garden
+claude plugin marketplace add https://github.com/cullenbmacdonald/grove
 ```
 
 Then install the grove plugin:
@@ -18,16 +18,10 @@ claude plugin install grove
 
 ## Setup
 
-Copy the env example and set your Obsidian vault path:
+Create `~/.grove.env` with your Obsidian vault path:
 
 ```bash
-cp .env.example .env
-```
-
-Edit `.env`:
-
-```
-OBSIDIAN_VAULT_PATH=/Users/yourname/path/to/vault
+echo 'OBSIDIAN_VAULT_PATH=/Users/yourname/path/to/vault' > ~/.grove.env
 ```
 
 ## Commands
@@ -53,6 +47,5 @@ OBSIDIAN_VAULT_PATH=/Users/yourname/path/to/vault
 
 ## New Machine Setup
 
-1. Clone this repo to `~/dev/claude_garden`
-2. Copy `.env.example` to `.env` and set `OBSIDIAN_VAULT_PATH`
-3. Run the install commands above
+1. Run the install commands above
+2. Create `~/.grove.env` with `OBSIDIAN_VAULT_PATH=/path/to/your/vault`

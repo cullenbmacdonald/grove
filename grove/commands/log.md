@@ -11,7 +11,7 @@ Append a timestamped journal entry to today's daily note.
 
 ## Instructions
 
-0. Get the vault path by running: `source ~/.claude/plugins/*/claude_garden/.env 2>/dev/null || source ~/dev/claude_garden/.env && echo $OBSIDIAN_VAULT_PATH`. Use this as `VAULT_PATH` in all subsequent steps. If it's empty, tell the user to set `OBSIDIAN_VAULT_PATH` in their `.env` file.
+0. Get the vault path by running: `source ~/.grove.env && echo $OBSIDIAN_VAULT_PATH`. Use this as `VAULT_PATH` in all subsequent steps. If it's empty, tell the user to set `OBSIDIAN_VAULT_PATH` in their `.env` file.
 
 1. Today's date is {{currentDate}}. Format it as YYYY-MM-DD for the filename.
 2. The daily note path is: `VAULT_PATH/02 - areas/daily/YYYY-MM-DD.md`
